@@ -65,7 +65,25 @@ public class LoginStepDefs {
   public void userShouldGetAnInvalidLoginMessage() {
     System.out.println("4: the user should get an invalid login message");
     String bodyText = driver.findElement(By.xpath("html/body")).getText();
-    String message = "Invalid password, try again!";
+    String message = "Invalid password";
     assertThat(bodyText).contains(message);
+  }
+
+  // When the user enters username as "nithin@gmail.com"
+  @When(value = "^the user enters username as \"(.*)\"$")
+  public void enterUsername(String username) {
+    driver.findElement(By.id("MainContent_txtUserName")).sendKeys(username);
+  }
+
+  // And the user enters password as "password"
+  @And(value = "^the user enters password as \"(.*)\"$")
+  public void enterPassword(String password) {
+    driver.findElement(By.id("MainContent_txtPassword")).sendKeys(password);
+  }
+
+  // And user clicks on login
+  @And(value = "user clicks on login")
+  public void userClicksLogin() {
+    driver.findElement(By.id("MainContent_btnLogin")).click();
   }
 }
