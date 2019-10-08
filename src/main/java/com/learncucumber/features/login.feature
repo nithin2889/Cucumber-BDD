@@ -16,3 +16,9 @@ Feature: The login page should allow someone to login
     When the user enters bad credentials
     Then the user should be not able to login
     And the user should get an invalid login message
+
+  Scenario: The user should be able to login
+    When the user enters username as "nithin@gmail.com"
+    And the user enters password as "password"
+    And user clicks on login
+    Then the user should be able to view their account balance
