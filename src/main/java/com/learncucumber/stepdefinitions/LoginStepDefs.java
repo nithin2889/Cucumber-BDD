@@ -3,10 +3,12 @@ package com.learncucumber.stepdefinitions;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.learncucumber.stepdefinitions.hooks.Hooks;
+import cucumber.api.DataTable;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import java.util.Map;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -85,5 +87,35 @@ public class LoginStepDefs {
   @And(value = "user clicks on login")
   public void userClicksLogin() {
     driver.findElement(By.id("MainContent_btnLogin")).click();
+  }
+
+  // When the user enters "<username>" and "<password>"
+  @When("^the user enters \"(.*)\" and \"(.*)\"$")
+  public void userEntersUsernameAndPassword(String username, String password) {
+    driver.findElement(By.id("MainContent_txtUserName")).sendKeys(username);
+    driver.findElement(By.id("MainContent_txtPassword")).sendKeys(password);
+    userClicksLogin();
+  }
+
+  // When the user enters a set of username and password
+  @When("the user enters a set of username and password")
+  public void userEntersSetOfUsernameAndPassword(DataTable credentials) {
+    // Extract data into a map and iterate over it.
+    String username;
+    String password;
+
+    for (Map<String, String> data : credentials.asMaps(String.class, String.class)) {
+      // parse the map into a local variable
+      username = data.get("username");
+      password = data.get("password");
+
+      // perform actions
+      driver.findElement(By.id("MainContent_txtUserName")).clear();
+      driver.findElement(By.id("MainContent_txtPassword")).clear();
+
+      driver.findElement(By.id("MainContent_txtUserName")).sendKeys(username);
+      driver.findElement(By.id("MainContent_txtPassword")).sendKeys(password);
+      userClicksLogin();
+    }
   }
 }

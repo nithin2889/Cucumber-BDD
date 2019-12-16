@@ -22,3 +22,18 @@ Feature: The login page should allow someone to login
     And the user enters password as "password"
     And user clicks on login
     Then the user should be able to view their account balance
+
+  Scenario Outline: the user should be able to login
+    When the user enters "<username>" and "<password>"
+    Then the user should be able to view their account balance
+    Examples:
+      | username | password |
+      | nithin@gmail.com | password |
+      | ariadi@testemail.com | apass |
+
+  Scenario: after a failed attempt, the user should be able to login again
+    When the user enters a set of username and password
+    | username | password |
+    | ariadi@testemail.com | apass |
+    | nithin@gmail.com | password |
+    Then the user should be able to view their account balance
