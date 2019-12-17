@@ -6,7 +6,6 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-    features = "src/main/java/com/learncucumber/features",
-    glue = "src/main/java/com/learncucumber/stepdefinitions",
-    tags = {"~@ignore"})
+    features = "/home/xu97pc/workspaces/myspace/Cucumber-BDD/src/main/java/com/learncucumber/features",
+    glue = "/home/xu97pc/workspaces/myspace/Cucumber-BDD/src/main/java/com/learncucumber/stepdefinitions")
 public class LoginRunner {}

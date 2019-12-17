@@ -12,10 +12,10 @@ public class Hooks {
   @Before
   public void setup() {
     // Initiate the WebDriver
+    System.out.println("setup");
     System.setProperty(
         "webdriver.chrome.driver",
-        "C:\\Users\\Nithin\\Downloads\\DevArea\\Dev "
-            + "Softwares\\Selenium\\Drivers\\Chrome\\chromedriver_win32\\chromedriver.exe");
+        "/home/xu97pc/Downloads/chromedriver");
     driver = new ChromeDriver();
   }
 

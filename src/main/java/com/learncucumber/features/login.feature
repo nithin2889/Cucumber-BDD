@@ -1,4 +1,4 @@
-@endToEnd
+#@endToEnd
 Feature: The login page should allow someone to login
   As a returning customer
   I want to login to the application
@@ -7,7 +7,7 @@ Feature: The login page should allow someone to login
   Background:
     Given the user is on the login page
 
-  @goodLogin
+  #@goodLogin
   Scenario: The user should be able to login with valid credentials
     When the user enters valid credentials
     Then the user should be able to view their account balance
